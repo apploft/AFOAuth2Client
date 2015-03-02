@@ -105,7 +105,7 @@ static NSMutableDictionary * AFKeychainQueryDictionaryWithIdentifier(NSString *i
                               username:(NSString *)username
                               password:(NSString *)password
                                  scope:(NSString *)scope
-                               success:(void (^)(AFOAuthCredential *credential))success
+                               success:(void (^)(AFOAuthCredential *credential, id response))success
                                failure:(void (^)(NSError *error))failure
 {
     NSParameterAssert(username);
@@ -124,7 +124,7 @@ static NSMutableDictionary * AFKeychainQueryDictionaryWithIdentifier(NSString *i
 
 - (void)authenticateUsingOAuthWithPath:(NSString *)path
                                  scope:(NSString *)scope
-                               success:(void (^)(AFOAuthCredential *credential))success
+                               success:(void (^)(AFOAuthCredential *credential, id response))success
                                failure:(void (^)(NSError *error))failure
 {
     NSParameterAssert(scope);
@@ -139,7 +139,7 @@ static NSMutableDictionary * AFKeychainQueryDictionaryWithIdentifier(NSString *i
 
 - (void)authenticateUsingOAuthWithPath:(NSString *)path
                           refreshToken:(NSString *)refreshToken
-                               success:(void (^)(AFOAuthCredential *credential))success
+                               success:(void (^)(AFOAuthCredential *credential, id response))success
                                failure:(void (^)(NSError *error))failure
 {
     NSParameterAssert(refreshToken);
@@ -155,7 +155,7 @@ static NSMutableDictionary * AFKeychainQueryDictionaryWithIdentifier(NSString *i
 - (void)authenticateUsingOAuthWithPath:(NSString *)path
                                   code:(NSString *)code
                            redirectURI:(NSString *)uri
-                               success:(void (^)(AFOAuthCredential *credential))success
+                               success:(void (^)(AFOAuthCredential *credential, id response))success
                                failure:(void (^)(NSError *error))failure
 {
     NSParameterAssert(code);
@@ -172,7 +172,7 @@ static NSMutableDictionary * AFKeychainQueryDictionaryWithIdentifier(NSString *i
 
 - (void)authenticateUsingOAuthWithPath:(NSString *)path
                             parameters:(NSDictionary *)parameters
-                               success:(void (^)(AFOAuthCredential *credential))success
+                               success:(void (^)(AFOAuthCredential *credential, id response))success
                                failure:(void (^)(NSError *error))failure
 {
     NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
@@ -214,7 +214,7 @@ static NSMutableDictionary * AFKeychainQueryDictionaryWithIdentifier(NSString *i
         [self setAuthorizationHeaderWithCredential:credential];
 
         if (success) {
-            success(credential);
+            success(credential, responseObject);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if (failure) {

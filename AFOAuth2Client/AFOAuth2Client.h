@@ -106,7 +106,7 @@
                               username:(NSString *)username
                               password:(NSString *)password
                                  scope:(NSString *)scope
-                               success:(void (^)(AFOAuthCredential *credential))success
+                               success:(void (^)(AFOAuthCredential *credential, id response))success
                                failure:(void (^)(NSError *error))failure;
 
 /**
@@ -119,7 +119,7 @@
  */
 - (void)authenticateUsingOAuthWithPath:(NSString *)path
                                  scope:(NSString *)scope
-                               success:(void (^)(AFOAuthCredential *credential))success
+                               success:(void (^)(AFOAuthCredential *credential, id response))success
                                failure:(void (^)(NSError *error))failure;
 
 /**
@@ -132,7 +132,7 @@
  */
 - (void)authenticateUsingOAuthWithPath:(NSString *)path
                           refreshToken:(NSString *)refreshToken
-                               success:(void (^)(AFOAuthCredential *credential))success
+                               success:(void (^)(AFOAuthCredential *credential, id response))success
                                failure:(void (^)(NSError *error))failure;
 
 /**
@@ -147,7 +147,7 @@
 - (void)authenticateUsingOAuthWithPath:(NSString *)path
                                   code:(NSString *)code
                            redirectURI:(NSString *)uri
-                               success:(void (^)(AFOAuthCredential *credential))success
+                               success:(void (^)(AFOAuthCredential *credential, id response))success
                                failure:(void (^)(NSError *error))failure;
 
 /**
@@ -160,7 +160,7 @@
  */
 - (void)authenticateUsingOAuthWithPath:(NSString *)path
                             parameters:(NSDictionary *)parameters
-                               success:(void (^)(AFOAuthCredential *credential))success
+                               success:(void (^)(AFOAuthCredential *credential, id response))success
                                failure:(void (^)(NSError *error))failure;
 
 @end
